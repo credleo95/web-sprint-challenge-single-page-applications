@@ -4,16 +4,17 @@ import axios from 'axios';
 
 
 
-export default function PizzaForm({form, setForm, orders, setOrders}){
+export default function PizzaForm({form, setForm, orders, setOrders, defaultForm, disabled}){
    
    const submit = event =>{
        event.preventDefault()
        const newOrder ={
              size: form.size.trim(),
             sauce: form.sauce.trim(),
-            toppings: ["pepperoni", "sausage", "tofu", "mushrooms", "peppers", "pineapple", "chicken", "threeCheese", "bacon", "artichoke", "garlic"].filter(topping => !!setForm(topping)),
+            toppings: ["pepperoni", "sausage", "tofu", "mushrooms", "peppers", "pineapple", "chicken", "threeCheese", "bacon", "artichoke", "garlic"].filter(topping => !!form[topping]),
             substitute:form.substitute,
-            instructions:form.instructions 
+            instructions:form.instructions,
+            name:form.name.trim()
           }
           axios.post('https://reqres.in/api/users', newOrder)
           .then((response) =>{
@@ -23,6 +24,7 @@ export default function PizzaForm({form, setForm, orders, setOrders}){
           .catch((error) => {
               console.log(error)
           })
+          setForm(defaultForm)
        }
    
    const onChange = event => {
@@ -36,6 +38,14 @@ export default function PizzaForm({form, setForm, orders, setOrders}){
 <div>
    <form onSubmit={submit}>
         <h2>Build Your Own Pizza</h2>
+        <label> Name &nbsp;&nbsp;
+        <input type="text"
+        name="name"
+        value={form.name}
+        onChange={onChange}
+        placeholder="Enter your name"/>
+        </label>
+
         <h4>Choice of Size</h4>
         <p>Required</p>
         <label>
@@ -202,7 +212,8 @@ export default function PizzaForm({form, setForm, orders, setOrders}){
             placeholder="Anything else you'd like to add?"
             />
         </label>
-        <button> Add to Order </button>
+        <br/>
+         <button disabled={disabled}> Add to Order </button> 
    </form>
        
 </div>

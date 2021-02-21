@@ -48,7 +48,8 @@ export default function PizzaForm({form, setForm, orders, setOrders, defaultForm
         name="name"
         value={form.name}
         onChange={onChange}
-        placeholder="Enter your name"/>
+        placeholder="Enter your name"
+        className="name-input"/>
         </label>
 
         <h4>Choice of Size</h4>
@@ -114,7 +115,8 @@ export default function PizzaForm({form, setForm, orders, setOrders, defaultForm
                     name="pepperoni"
                     type="checkbox"
                     checked={form.pepperoni}
-                    onChange={onChange}/>
+                    onChange={onChange}
+                    id="pepperoni"/>
                     &nbsp;&nbsp; Pepperoni
                 </label>
                 <label>
@@ -122,7 +124,8 @@ export default function PizzaForm({form, setForm, orders, setOrders, defaultForm
                     name="sausage"
                     type="checkbox"
                     checked={form.sausage}
-                    onChange={onChange}/>
+                    onChange={onChange}
+                    id="sausage"/>
                     &nbsp;&nbsp; Italian Sausage
                 </label>
                 <label>

@@ -4,20 +4,26 @@ import ReactDom from 'react-dom';
 import McdonaldsLogo from './logo.png'
 import SweetGreensLogo from './sweetgreenLogo.png'
 import StarbucksLogo from './StarbucksLogo.png';
+import TacoBellLogo from './TacoBellLogo.png';
+import RubyTuesdayLogo from './RubyTuesdayLogo.png';
+import BojanglesLogo from './BojanglesLogo.png';
 import {Link, Route} from 'react-router-dom';
 
 // Home Component Styling
 const TopRestaurantSection = styled.section`
         display: flex; 
         flex-flow: row wrap;
+        padding-left: 5%; 
   `
   const BottomRestaurantSection = styled.section`
         display: flex; 
         flex-flow: row wrap;
+        padding-left: 5%; 
   `
 
 const RestaurantDiv = styled.div`
       width: 25%; 
+      border-left: 2px solid black; 
 
 ` 
 const StandardLogo = styled.img`
@@ -27,11 +33,11 @@ const StandardLogo = styled.img`
 // Home Page Restuarants Mark-up
 export default function Home(){
     return(
-        <div>
+        <div className="home-container">
             <div className='image-container'>
                 <section className="Hero-statement">
                             <h1>Your favorite food, delivered while coding</h1>
-                            <button><Link to='/pizza'style={{textDecoration: 'none',color:'black'}}>Pizza?</Link></button>
+                            <button><Link to='/pizza'style={{textDecoration: 'none',color:'black'}} className="pizza-button">Pizza?</Link></button>
                 </section>
             </div>
              <h3>Food Delivery in Gotham City</h3>
@@ -60,7 +66,7 @@ export default function Home(){
                 </RestaurantDiv>
                 <RestaurantDiv style={{width: '30%'}}>
                     <figure>
-                        <StandardLogo src={StarbucksLogo} style={{width: '15%'}} alt="Starbucks Logo"/>
+                        <StandardLogo src={StarbucksLogo} style={{width: '20%'}} alt="Starbucks Logo"/>
                         <figcaption>Starbucks</figcaption>
                         <br/>
                         <h4>$ - Cafe - Coffee - Breakfast and Brunch</h4>
@@ -74,7 +80,7 @@ export default function Home(){
             <BottomRestaurantSection>
                 <RestaurantDiv>
                     <figure>
-                        <StandardLogo src="" alt="Taco Bell Logo"/>
+                        <StandardLogo src={TacoBellLogo} alt="Taco Bell Logo"/>
                         <figcaption>Taco Bell</figcaption>
                         <br/>
                         <h4>$ - Burritos - Fast Food - Mexican</h4>
@@ -83,9 +89,9 @@ export default function Home(){
                         <button>$2.99 Delivery Fee</button>
                     </figure>               
                </RestaurantDiv>
-                <RestaurantDiv>
+                <RestaurantDiv style={{paddingTop: '4%'}}>
                     <figure>
-                        <StandardLogo src="" alt="Ruby Tuesday Logo"/>
+                        <StandardLogo src={RubyTuesdayLogo} style={{width: '40%'}} alt="Ruby Tuesday Logo"/>
                         <figcaption>Ruby Tuesday</figcaption>
                         <br/>
                         <h4>$ - American - BBQ - Sandwich - Family Meals</h4>
@@ -96,7 +102,7 @@ export default function Home(){
                   </RestaurantDiv>
                 <RestaurantDiv>
                     <figure>
-                        <StandardLogo src="" alt="Bojangle's Logo"/>
+                        <StandardLogo src={BojanglesLogo} style={{width: '30%'}} alt="Bojangle's Logo"/>
                         <figcaption>Bojangle's Famous Chicken & Biscuits</figcaption>
                         <br/>
                         <h4>$ - American - Chicken - Wings</h4>

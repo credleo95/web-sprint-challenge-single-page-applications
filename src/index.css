@@ -15,6 +15,7 @@ code {
 
 html{
   font-family: 'Indie Flower', cursive;
+  box-sizing: border-box; 
 }
 .header-nav{ 
   display: flex; 
@@ -52,5 +53,7 @@ html{
   width: 50%; 
   padding-left: 25%; 
 }
-
+.Hero-statement h1{
+  padding-left: 10%; 
+}
 

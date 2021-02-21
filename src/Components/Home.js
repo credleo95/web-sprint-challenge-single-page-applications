@@ -4,6 +4,7 @@ import ReactDom from 'react-dom';
 import McdonaldsLogo from './logo.png'
 import SweetGreensLogo from './sweetgreenLogo.png'
 import StarbucksLogo from './StarbucksLogo.png';
+import {Link, Route} from 'react-router-dom';
 
 // Home Component Styling
 const TopRestaurantSection = styled.section`
@@ -27,6 +28,12 @@ const StandardLogo = styled.img`
 export default function Home(){
     return(
         <div>
+            <div className='image-container'>
+                <section className="Hero-statement">
+                            <h1>Your favorite food, delivered while coding</h1>
+                            <button><Link to='/pizza'style={{textDecoration: 'none',color:'black'}}>Pizza?</Link></button>
+                </section>
+            </div>
              <h3>Food Delivery in Gotham City</h3>
              <TopRestaurantSection>
                  <RestaurantDiv>

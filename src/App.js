@@ -5,8 +5,30 @@ import Home from './Components/Home';
 import PizzaForm from './Components/PizzaForm'
 
 
+const defaultForm = {
+  size:"",
+  sauce:"",
+  toppings: "",
+  substitute:"",
+  pepperoni: false, 
+  sausage: false, 
+  tofu: false,
+  mushrooms: false,
+  peppers: false,
+  pineapple: false, 
+  chicken: false,
+  threeCheese: false, 
+  bacon: false,
+  artichoke: false,
+  garlic: false,
+  instructions:""
+}
+
 
 const App = () => {
+const [form, setForm] = useState(defaultForm)
+const [orders, setOrders]=useState([])
+
   return (
     <div>
       <div className='header-nav'>
@@ -22,18 +44,12 @@ const App = () => {
           </nav>
           
       </div>
-      <div className='image-container'>
-          <section className="Hero-statement">
-                    <h1>Your favorite food, delivered while coding</h1>
-                    <button>Pizza?</button>
-          </section>
-      </div>
       <Switch>
+           <Route exact path='/'> 
+            <Home/>
+          </Route>
           <Route path='/pizza'>
             <PizzaForm/>
-          </Route>
-          <Route path='/'> 
-            <Home/>
           </Route>
       </Switch>
       

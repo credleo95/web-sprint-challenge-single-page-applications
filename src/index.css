@@ -41,4 +41,9 @@ html{
   background-image: url(./Components/Pizza.jpg); 
   height: 25%; 
 }
-
+/* Styling for Toppings and Sauces */
+.sauce-container,.toppings-container{
+  display: flex; 
+  flex-flow: column wrap; 
+  height: 25%; 
+}

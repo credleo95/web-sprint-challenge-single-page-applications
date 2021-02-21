@@ -8,8 +8,6 @@ import PizzaForm from './Components/PizzaForm'
 const defaultForm = {
   size:"",
   sauce:"",
-  toppings: "",
-  substitute:"",
   pepperoni: false, 
   sausage: false, 
   tofu: false,
@@ -21,6 +19,7 @@ const defaultForm = {
   bacon: false,
   artichoke: false,
   garlic: false,
+  substitute:false,
   instructions:""
 }
 
@@ -32,7 +31,7 @@ const [orders, setOrders]=useState([])
   return (
     <div>
       <div className='header-nav'>
-      <h1 class="lambdaEats">Lambda Eats</h1>
+      <h1 className="lambdaEats">Lambda Eats</h1>
           <nav className='nav-bar'>
             <button>
               <Link to='/' style={{textDecoration: 'none',color:'black'}}>Home</Link>
@@ -49,7 +48,7 @@ const [orders, setOrders]=useState([])
             <Home/>
           </Route>
           <Route path='/pizza'>
-            <PizzaForm/>
+            <PizzaForm form={form} setForm={setForm} orders={orders} setOrders={setOrders}/>
           </Route>
       </Switch>
       

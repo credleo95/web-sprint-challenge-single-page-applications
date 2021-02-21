@@ -4,19 +4,46 @@ import axios from 'axios';
 
 
 
-export default function PizzaForm(){
+export default function PizzaForm({form, setForm, orders, setOrders}){
    
+   const submit = event =>{
+       event.preventDefault()
+       const newOrder ={
+             size: form.size.trim(),
+            sauce: form.sauce.trim(),
+            toppings: ["pepperoni", "sausage", "tofu", "mushrooms", "peppers", "pineapple", "chicken", "threeCheese", "bacon", "artichoke", "garlic"].filter(topping => !!setForm(topping)),
+            substitute:form.substitute,
+            instructions:form.instructions 
+          }
+          axios.post('https://reqres.in/api/users', newOrder)
+          .then((response) =>{
+              console.log(response.data)
+              setOrders(...orders,response.data)
+          })
+          .catch((error) => {
+              console.log(error)
+          })
+       }
    
+   const onChange = event => {
+       const{name, value, type, checked } = event.target 
+       const toppingValue = type === "checkbox" ? checked : value
+       setForm({...form,[name]:toppingValue})
+   }
    
    
     return(
 <div>
-   <form>
+   <form onSubmit={submit}>
         <h2>Build Your Own Pizza</h2>
         <h4>Choice of Size</h4>
         <p>Required</p>
         <label>
-             <select name="size">{/*value={form.size} > */}
+             <select 
+             name="size"
+             value={form.size} 
+             onChange={onChange}
+             >
                 <option value="">Select</option>
                 <option value="small">Small</option>
                 <option value="medium">Medium</option>
@@ -31,28 +58,36 @@ export default function PizzaForm(){
                     <input 
                     name="sauce"
                     type="radio"
-                    value="original-red"/>
+                    value="original-red"
+                    onChange={onChange}
+                    checked={form.sauce ==="original-red"}/>
                 &nbsp;&nbsp; Original Red
                 </label>
                 <label> 
                     <input 
                     name="sauce"
                     type="radio"
-                    value="garlic-ranch"/>
+                    value="garlic-ranch"
+                    onChange={onChange}
+                    checked={form.sauce ==="garlic-ranch"}/>
                 &nbsp;&nbsp; Garlic Ranch
                 </label>
                 <label> 
                     <input 
                     name="sauce"
                     type="radio"
-                    value="bbq"/>
+                    value="bbq"
+                    onChange={onChange}
+                    checked={form.sauce ==="bbq"}/>
                 &nbsp;&nbsp; BBQ Sauce
                 </label>
                 <label> 
                     <input 
                     name="sauce"
                     type="radio"
-                    value="spinach-alfredo"/>
+                    value="spinach-alfredo"
+                    onChange={onChange}
+                    checked={form.sauce ==="spinach-alfredo"}/>
                 &nbsp;&nbsp; Spinach Alfredo
                 </label>
         </div>
@@ -62,73 +97,99 @@ export default function PizzaForm(){
                 <label>
                     <input 
                     name="pepperoni"
-                    type="checkbox"/>
+                    type="checkbox"
+                    checked={form.pepperoni}
+                    onChange={onChange}/>
                     &nbsp;&nbsp; Pepperoni
                 </label>
                 <label>
                     <input 
                     name="sausage"
-                    type="checkbox"/>
+                    type="checkbox"
+                    checked={form.sausage}
+                    onChange={onChange}/>
                     &nbsp;&nbsp; Italian Sausage
                 </label>
                 <label>
                     <input 
                     name="tofu"
-                    type="checkbox"/>
+                    type="checkbox"
+                    checked={form.tofu}
+                    onChange={onChange}/>
                 &nbsp;&nbsp; Tofu 
                 </label>
                 <label>
                     <input 
                     name="mushrooms"
-                    type="checkbox"/>
+                    type="checkbox"
+                    checked={form.mushrooms}
+                    onChange={onChange}/>
                 &nbsp;&nbsp; Mushrooms
                 </label>
                 <label>
                     <input 
                     name="peppers"
-                    type="checkbox"/>
+                    type="checkbox"
+                    checked={form.peppers}
+                    onChange={onChange}/>
                 &nbsp;&nbsp; Green Peppers
                 </label> <label>
                     <input 
                     name="pineapple"
-                    type="checkbox"/>
+                    type="checkbox"
+                    checked={form.pineapple}
+                    onChange={onChange}/>
                 &nbsp;&nbsp; Pineapple
                 </label>
                 <label>
                     <input 
                     name="chicken"
-                    type="checkbox"/>
+                    type="checkbox"
+                    checked={form.chicken}
+                    onChange={onChange}/>
                 &nbsp;&nbsp; Grilled Chicken
                 </label>
                 <label>
                     <input 
                     name="threeCheese"
-                    type="checkbox"/>
+                    type="checkbox"
+                    checked={form.threeCheese}
+                    onChange={onChange}/>
                 &nbsp;&nbsp; Three Cheese
                 </label>
                 <label>
                     <input 
                     name="bacon"
-                    type="checkbox"/>
+                    type="checkbox"
+                    checked={form.bacon}
+                    onChange={onChange}/>
                 &nbsp;&nbsp; Signature Cured Bacon
                 </label>
                 <label>
                     <input 
                     name="artichoke"
-                    type="checkbox"/>
+                    type="checkbox"
+                    checked={form.artichoke}
+                    onChange={onChange}/>
                 &nbsp;&nbsp; Artichoke Hearts
                 </label>
                 <label>
                     <input 
                     name="garlic"
-                    type="checkbox"/>
+                    type="checkbox"
+                    checked={form.garlic}
+                    onChange={onChange}/>
                 &nbsp;&nbsp; Roasted Garlic
                 </label>
         </div>
         <h4>Choice of Substitute</h4>
         <p>Choose up to 1</p>
         <label> 
-            <input type="checkbox"/>
+            <input 
+            name="substitute"
+            type="checkbox"
+            checked={form.substitute}
+            onChange={onChange}/>
             &nbsp;&nbsp; Gluten Free Curst (+ $1.00)
         </label>
         <h4>Special Instructions</h4>
@@ -136,10 +197,12 @@ export default function PizzaForm(){
             <input 
             type="text"
             name="instructions"
+            value={form.instructions}
+            onChange={onChange}
             placeholder="Anything else you'd like to add?"
             />
         </label>
-
+        <button> Add to Order </button>
    </form>
        
 </div>

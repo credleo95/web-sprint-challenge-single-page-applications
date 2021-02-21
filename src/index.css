@@ -11,3 +11,34 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+html{
+  font-family: 'Indie Flower', cursive;
+}
+.header-nav{ 
+  display: flex; 
+  justify-content: space-between;  
+}
+.header-nav button{
+  margin-top: 1rem; 
+  padding-left: 2rem; 
+  padding-right: 2rem;
+  text-decoration: none; 
+  color: black; 
+}
+.lambdaEats{
+  color: red; 
+}
+.Hero-statement{
+  text-align: center; 
+}
+#pizza-picture{
+  width: 80%;
+  height: 20%;  
+}
+.image-container{
+  background-image: url(./Components/Pizza.jpg); 
+  height: 25%; 
+}
+

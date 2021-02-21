@@ -21,7 +21,7 @@ const RestaurantDiv = styled.div`
 
 ` 
 const StandardLogo = styled.img`
-        width: 25%; 
+        width: 30%; 
         height: 25%; `
 
 // Home Page Restuarants Mark-up

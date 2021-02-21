@@ -4,8 +4,9 @@ import axios from 'axios';
 
 
 
-export default function PizzaForm({form, setForm, orders, setOrders, defaultForm, disabled}){
+export default function PizzaForm({form, setForm, orders, setOrders, defaultForm, disabled, checkOrderErrors,errors}){
    
+    // Submit & Reset (Event Handler)
    const submit = event =>{
        event.preventDefault()
        const newOrder ={
@@ -26,17 +27,21 @@ export default function PizzaForm({form, setForm, orders, setOrders, defaultForm
           })
           setForm(defaultForm)
        }
-   
+   // Change Handler 
    const onChange = event => {
        const{name, value, type, checked } = event.target 
        const toppingValue = type === "checkbox" ? checked : value
+       checkOrderErrors(name,toppingValue)
        setForm({...form,[name]:toppingValue})
    }
    
    
     return(
-<div>
-   <form onSubmit={submit}>
+<div className="content-container">
+   <form onSubmit={submit} className="form-container">
+   <div style={{color: 'red'}}> 
+       <div>{errors.name}</div>
+    </div>
         <h2>Build Your Own Pizza</h2>
         <label> Name &nbsp;&nbsp;
         <input type="text"

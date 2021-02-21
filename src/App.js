@@ -28,6 +28,7 @@ const defaultForm = {
 
 // errors Object
 const orderErrors ={
+  name:"",
   size: "",
   sauce:"",
   pepperoni: "",
@@ -42,8 +43,7 @@ const orderErrors ={
   artichoke: "",
   garlic: "",
   substitute:"",
-  instructions:"",
-  name:""
+  instructions:""
 }
 
 
@@ -51,13 +51,16 @@ const App = () => {
 const [form, setForm] = useState(defaultForm)
 const [orders, setOrders]=useState([])
 const [disabled, setDisabled]=useState(true)
-const [errors, setErrors] = useState()
+const [errors, setErrors] = useState(orderErrors)
 
 const checkFormErrors = (name, value) => {
   yup.reach(Schema, name).validate(value)
   .then(() => setErrors({...errors, [name]:''}))
   .catch((error) => setErrors({...errors,[name]: error.errors[0]}))
 }
+useEffect(()=>{
+  Schema.isValid(form).then(valid => setDisabled(!valid))
+},[form])
 
   return (
     <div>
@@ -72,14 +75,21 @@ const checkFormErrors = (name, value) => {
             </button>
             &nbsp;&nbsp;
           </nav>
-          
       </div>
       <Switch>
            <Route exact path='/'> 
             <Home/>
           </Route>
           <Route path='/pizza'>
-            <PizzaForm form={form} setForm={setForm} orders={orders} setOrders={setOrders} defaultForm={defaultForm} disabled={disabled}/>
+            <PizzaForm 
+            form={form} 
+            setForm={setForm} 
+            orders={orders} 
+            setOrders={setOrders} 
+            defaultForm={defaultForm} 
+            disabled={disabled} 
+            checkOrderErrors={checkFormErrors}
+            errors={errors}/>
           </Route>
       </Switch>
       

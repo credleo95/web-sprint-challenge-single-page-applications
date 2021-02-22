@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import ReactDom from 'react-dom'; 
-import McdonaldsLogo from './logo.png'
-import SweetGreensLogo from './sweetgreenLogo.png'
-import StarbucksLogo from './StarbucksLogo.png';
-import TacoBellLogo from './TacoBellLogo.png';
-import RubyTuesdayLogo from './RubyTuesdayLogo.png';
-import BojanglesLogo from './BojanglesLogo.png';
+import McdonaldsLogo from './Logos/logo.png'
+import SweetGreensLogo from './Logos/sweetgreenLogo.png'
+import StarbucksLogo from './Logos/StarbucksLogo.png';
+import TacoBellLogo from './Logos/TacoBellLogo.png';
+import RubyTuesdayLogo from './Logos/RubyTuesdayLogo.png';
+import BojanglesLogo from './Logos/BojanglesLogo.png';
 import {Link, Route} from 'react-router-dom';
 
 // Home Component Styling

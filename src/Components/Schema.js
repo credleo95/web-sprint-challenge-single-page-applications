@@ -2,6 +2,8 @@ import * as yup from 'yup'
 
 const Schema= yup.object().shape({
     name: yup.string().required('name is required').min(3,'name must be longer than 2 characters'),
+    size:yup.string(),
+    sauce:yup.boolean(),
  pepperoni: yup.boolean(),
   sausage: yup.boolean(),
   tofu: yup.boolean(),

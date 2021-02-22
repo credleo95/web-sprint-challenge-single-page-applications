@@ -48,18 +48,20 @@ const orderErrors ={
 
 
 const App = () => {
-const [form, setForm] = useState(defaultForm)
-const [orders, setOrders]=useState([])
-const [disabled, setDisabled]=useState(true)
-const [errors, setErrors] = useState(orderErrors)
+  // Slices of State
+const [form, setForm] = useState(defaultForm)  // Form State
+const [orders, setOrders]=useState([]) // State for Orders(Array of values)
+const [disabled, setDisabled]=useState(true)  // Disable attribute for validation
+const [errors, setErrors] = useState(orderErrors) // Error Validation State
 
+// Error Validation via yup schema
 const checkFormErrors = (name, value) => {
   yup.reach(Schema, name).validate(value)
   .then(() => setErrors({...errors, [name]:''}))
   .catch((error) => setErrors({...errors,[name]: error.errors[0]}))
 }
 useEffect(()=>{
-  Schema.isValid(form).then(valid => setDisabled(!valid))
+  Schema.isValid(form).then(valid => setDisabled(valid))
 },[form])
 
   return (

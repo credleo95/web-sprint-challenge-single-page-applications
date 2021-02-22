@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios'; 
+import pizza from './Pizza.jpg'
 
 
 
@@ -17,7 +18,7 @@ export default function PizzaForm({form, setForm, orders, setOrders, defaultForm
             instructions:form.instructions,
             name:form.name.trim()
           }
-          axios.post('https://reqres.in/api/users', newOrder)
+          axios.post('https://reqres.in/api/users', newOrder) 
           .then((response) =>{
               console.log(response.data)
               setOrders(...orders,response.data)
@@ -25,7 +26,7 @@ export default function PizzaForm({form, setForm, orders, setOrders, defaultForm
           .catch((error) => {
               console.log(error)
           })
-          setForm(defaultForm)
+          setForm(defaultForm)    
        }
    // Change Handler 
    const onChange = event => {
@@ -38,6 +39,10 @@ export default function PizzaForm({form, setForm, orders, setOrders, defaultForm
    
     return(
 <div className="content-container">
+    <div className="pizza-container">
+        <img src={pizza} alt="cheese pizza">
+        </img>
+    </div>
    <form onSubmit={submit} className="form-container">
    <div style={{color: 'red'}}> 
        <div>{errors.name}</div>
@@ -51,9 +56,10 @@ export default function PizzaForm({form, setForm, orders, setOrders, defaultForm
         placeholder="Enter your name"
         className="name-input"/>
         </label>
-
-        <h4>Choice of Size</h4>
-        <p>Required</p>
+        <div className="specifications">
+            <h4>Choice of Size</h4>
+            <p>Required</p>
+        </div>
         <label>
              <select 
              name="size"
@@ -67,8 +73,10 @@ export default function PizzaForm({form, setForm, orders, setOrders, defaultForm
                 <option value="xtra-large">Extra Large</option>
             </select>
         </label>
-        <h4>Choice of Sauce</h4>
-        <p>Required</p>
+        <div className="specifications">
+            <h4>Choice of Sauce</h4>
+            <p>Required</p>
+        </div>
         <div className="sauce-container">
                 <label> 
                     <input 
@@ -107,8 +115,10 @@ export default function PizzaForm({form, setForm, orders, setOrders, defaultForm
                 &nbsp;&nbsp; Spinach Alfredo
                 </label>
         </div>
-        <h4>Add Toppings</h4>
-        <p>Choose up to 6</p>
+        <div className="specifications">
+            <h4>Add Toppings</h4>
+            <p>Choose up to 6</p>
+        </div>
         <div className="toppings-container">
                 <label>
                     <input 
@@ -200,8 +210,10 @@ export default function PizzaForm({form, setForm, orders, setOrders, defaultForm
                 &nbsp;&nbsp; Roasted Garlic
                 </label>
         </div>
-        <h4>Choice of Substitute</h4>
-        <p>Choose up to 1</p>
+        <div className="specifications">
+            <h4>Choice of Substitute</h4>
+            <p>Choose up to 1</p>
+        </div>
         <label> 
             <input 
             name="substitute"
@@ -210,7 +222,9 @@ export default function PizzaForm({form, setForm, orders, setOrders, defaultForm
             onChange={onChange}/>
             &nbsp;&nbsp; Gluten Free Curst (+ $1.00)
         </label>
-        <h4>Special Instructions</h4>
+        <div className="specifications">
+            <h4>Special Instructions</h4>
+        </div>
         <label>
             <input 
             type="text"

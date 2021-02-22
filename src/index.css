@@ -17,6 +17,7 @@ html{
   font-family: 'Indie Flower', cursive;
   box-sizing: border-box; 
 }
+/* Styling for App Component */
 .header-nav{ 
   display: flex; 
   justify-content: space-between;  
@@ -42,18 +43,27 @@ html{
   background-image: url(./Components/Pizza.jpg); 
   height: 25%; 
 }
+
+/* Styling for Home Component */
+.Hero-statement h1{
+  padding-left: 10%; 
+}
 /* Styling for Toppings and Sauces */
 .sauce-container,.toppings-container{
   display: flex; 
   flex-flow: column wrap; 
   height: 25%; 
 }
+/* Styling for Form Component */
 .form-container{
-  border: 4px dashed red; 
   width: 50%; 
-  padding-left: 25%; 
-}
-.Hero-statement h1{
   padding-left: 10%; 
 }
 
+.specifications{
+  background-color: rgb(161, 159, 159, .7);
+}
+.pizza-container img{
+  width: 80%; 
+  padding-left: 10%; 
+}
